@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus
+  namespace: nexus
+  labels:
+    app: nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - name: nexus
+        image: sonatype/nexus3
+        ports:
+        - containerPort: 8081
+        resources: {}
+        volumeMounts:
+          - name: data-disk
+            mountPath: /nexus-data
+      volumes:
+        - name: data-disk
+          persistentVolumeClaim:
+            claimName: claim-nexus
