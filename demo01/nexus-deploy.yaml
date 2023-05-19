@@ -20,6 +20,7 @@ spec:
         image: sonatype/nexus3
         ports:
         - containerPort: 8081
+        - containerPort: 5000
         resources: {}
         volumeMounts:
           - name: data-disk

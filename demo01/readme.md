@@ -22,14 +22,33 @@ kubectl apply -f nexus-pv.yaml
 ```
 kubectl apply -f nexus-pvc.yaml
 ```
-> Deploy `nexus` [svc](./nexus-nodeport.yaml)
+> Deploy `nexus` [svc](./nexus-svc.yaml)
 
 ```
-kubectl apply -f nexus-nodeport.yaml
+kubectl apply -f nexus-svc.yaml
 ```
 > Deploy `nexus` [deployment](./nexus-deploy.yaml)
 
 ```
 kubectl apply -f nexus-deploy.yaml
 ```
-> go to http://localhost:30009
+> Deploy `nexus` [Ingress](./nexus-ingress.yaml)
+
+```
+kubectl apply -f nexus-ingress.yaml
+```
+> go to http://nexus.local.com
+
+
+
+> enable insecure registiry:
+```
+sudo vi /etc/docker/daemon.json
+
+# paste below content:
+{
+  "insecure-registries" : ["docker.nexus.local.com"]
+}
+
+sudo systemctl restart docker
+```
