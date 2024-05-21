@@ -52,3 +52,17 @@ sudo vi /etc/docker/daemon.json
 
 sudo systemctl restart docker
 ```
+
+> publish a helm chart:
+
+```
+helm repo add REPO_LOCAL_NAME  'http://USERNAME:PASSWORD@nexus.local.com/repository/REPONAME'
+
+
+helm package HELMCHAR_LOCAL_DIR
+
+curl -v --insecure -u "USERNAME:PASSWORD" -w "%{http_code}" --upload-file TAR_FILE_OF_CHART  "http://nexus.local.com/repository/REPO_NAME"
+
+
+helm pull --untar  REPO_LOCAL_NAME/HELMCHAR_NAME
+```

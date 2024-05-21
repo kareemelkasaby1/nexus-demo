@@ -3,12 +3,13 @@ kind: Ingress
 metadata:
   name: nexus
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   namespace: nexus
 spec:
+  ingressClassName: nginx
   rules:
   - host: nexus.local.com
     http:
